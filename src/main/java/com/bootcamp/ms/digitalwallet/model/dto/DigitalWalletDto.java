@@ -1,21 +1,17 @@
-package com.bootcamp.ms.digitalwallet.model.entity;
+package com.bootcamp.ms.digitalwallet.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
+@Setter
+@Getter
 @Builder
-@Document(collection = "digitalwallet")
-public class DigitalWalletEntity {
+@AllArgsConstructor
+@ToString
+public class DigitalWalletDto {
 
     /**
      * Identificador único de la persona.
      */
-    @Id
     public String id;
     private int typeDocument;
     private String descriptionDocument;

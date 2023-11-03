@@ -1,5 +1,6 @@
 package com.bootcamp.ms.digitalwallet.controller;
 
+import com.bootcamp.ms.digitalwallet.model.dto.DigitalWalletDto;
 import com.bootcamp.ms.digitalwallet.model.entity.DigitalWalletEntity;
 import com.bootcamp.ms.digitalwallet.service.DigitalWalletService;
 import io.reactivex.rxjava3.core.Maybe;
@@ -23,10 +24,9 @@ public class DigitalWalletController {
     DigitalWalletService service;
 
     @PostMapping
-    public Maybe<ResponseEntity<DigitalWalletEntity>> crearCard(@RequestBody DigitalWalletEntity entity) {
-        return Maybe.just(entity)
+    public Maybe<ResponseEntity<DigitalWalletDto>> crearCard(@RequestBody DigitalWalletDto digitalWalletDto) {
+        return Maybe.just(digitalWalletDto)
                 .flatMap(p -> service.create(p).toMaybe())
                 .map(ResponseEntity::ok);
     }
-
 }

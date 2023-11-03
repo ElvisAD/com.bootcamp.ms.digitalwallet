@@ -1,8 +1,8 @@
 package com.bootcamp.ms.digitalwallet.service;
 
-import com.bootcamp.ms.digitalwallet.model.entity.DigitalWalletEntity;
+import com.bootcamp.ms.digitalwallet.model.dto.DigitalWalletDto;
 import io.reactivex.rxjava3.core.Single;
 
 public interface DigitalWalletService {
-    Single<DigitalWalletEntity> create(DigitalWalletEntity cardEntity);
+    Single<DigitalWalletDto> create(DigitalWalletDto digitalWalletDto);
 }
