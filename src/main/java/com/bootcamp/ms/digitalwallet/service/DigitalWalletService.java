@@ -7,6 +7,6 @@ import io.reactivex.rxjava3.core.Single;
 
 public interface DigitalWalletService {
     Single<DigitalWalletDto> create(DigitalWalletDto digitalWalletDto);
-    Maybe<DigitalWalletDto> getDigitalWalletNumber(String numberDigitalWallet);
-    Completable actualizarSaldoDigitalWallet(String numberDigitalWallet, double saldo);
+    Maybe<DigitalWalletDto> getDigitalWalletPhone(String phoneDigitalWallet);
+    Completable actualizarSaldoDigitalWallet(String phoneDigitalWallet, double saldo);
 }

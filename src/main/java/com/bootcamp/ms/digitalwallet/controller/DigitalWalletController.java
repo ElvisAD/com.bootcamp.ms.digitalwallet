@@ -29,10 +29,10 @@ public class DigitalWalletController {
                 .map(ResponseEntity::ok);
     }
 
-    @GetMapping("/{numberWallet}")
-    public Maybe<ResponseEntity<DigitalWalletDto>> obtenerNUmberDigitalWallet(@PathVariable String numberWallet) {
+    @GetMapping("/{numberPhoneWallet}")
+    public Maybe<ResponseEntity<DigitalWalletDto>> obtenerNumberDigitalWallet(@PathVariable String numberPhoneWallet) {
 
-        return service.getDigitalWalletNumber(numberWallet)
+        return service.getDigitalWalletPhone(numberPhoneWallet)
                 .observeOn(Schedulers.io())
                 .map(digitalWallet -> ResponseEntity.ok(digitalWallet))
                 .doOnError(throwable -> log.error("do on Error,{}", throwable))
@@ -41,10 +41,10 @@ public class DigitalWalletController {
                         Maybe.just(ResponseEntity.notFound().build()) :
                         Maybe.just(ResponseEntity.internalServerError().build()));
     }
-    @PatchMapping("/{numberWallet}")
+    @PatchMapping("/{phoneDigitalWallet}")
     public Completable actualizarDigitalWallet(
-            @PathVariable String numberWallet,
+            @PathVariable String phoneDigitalWallet,
             @RequestParam double valor) {
-        return service.actualizarSaldoDigitalWallet(numberWallet, valor);
+        return service.actualizarSaldoDigitalWallet(phoneDigitalWallet, valor);
     }
 }

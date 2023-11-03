@@ -29,7 +29,7 @@ public class DigitalWalletServiceImpl implements DigitalWalletService {
     @Override
     public Single<DigitalWalletDto> create(DigitalWalletDto digitalWalletDto) {
         //return RxJava3Adapter.monoToSingle(repository.save(cardEntity));
-        return  RxJava3Adapter.monoToSingle(repository.findByNumberDocument(digitalWalletDto.getNumberDocument())
+        return  RxJava3Adapter.monoToSingle(repository.findByTelephono(digitalWalletDto.getTelephono())
                         .switchIfEmpty(Mono.just(DigitalWalletEntity.builder().numberDocument("").build()))
                         .flatMap(clientEntity -> {
                             if(clientEntity.getNumberDocument().equalsIgnoreCase("")){
@@ -44,9 +44,9 @@ public class DigitalWalletServiceImpl implements DigitalWalletService {
     }
 
     @Override
-    public Maybe<DigitalWalletDto> getDigitalWalletNumber(String numberDigitalWallet) {
+    public Maybe<DigitalWalletDto> getDigitalWalletPhone(String phoneDigitalWallet) {
         return Maybe.create(emitter -> {
-            Mono<DigitalWalletDto> mono = repository.findByNumberDocument(numberDigitalWallet)
+            Mono<DigitalWalletDto> mono = repository.findByTelephono(phoneDigitalWallet)
                     .map(mapper:: toDigitalWalletEntityADto)
                     .switchIfEmpty(Mono.error(new Exception("No se encontro cuenta en digital wallet")));
             mono.subscribe(
@@ -63,8 +63,8 @@ public class DigitalWalletServiceImpl implements DigitalWalletService {
     }
 
     @Override
-    public Completable actualizarSaldoDigitalWallet(String numberDigitalWallet, double saldo) {
-        return RxJava3Adapter.monoToCompletable(repository.findByNumberDocument(numberDigitalWallet)
+    public Completable actualizarSaldoDigitalWallet(String phoneDigitalWallet, double saldo) {
+        return RxJava3Adapter.monoToCompletable(repository.findByTelephono(phoneDigitalWallet)
                 .flatMap(existingDigitalWallet ->{
                     existingDigitalWallet.setAmount(saldo);
                     return repository.save(existingDigitalWallet);
