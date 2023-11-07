@@ -16,6 +16,12 @@
 	<properties>
 		<java.version>11</java.version>
 		<mapstruct.version>1.5.5.final</mapstruct.version>
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.tests>src/test/java</sonar.tests>
+		<sonar.java.binaries>target/classes</sonar.java.binaries>
+		<sonar.host.url>http://localhost:9000</sonar.host.url> <!-- Reemplaza con la URL de tu servidor de SonarQube -->
+		<sonar.login>admin</sonar.login>
+		<sonar.password>Peru123.</sonar.password>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -53,10 +59,20 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- Dependencias de SonarQube -->
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.10.0.2594</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -66,6 +82,15 @@
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.7.0.1746</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -81,5 +106,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
