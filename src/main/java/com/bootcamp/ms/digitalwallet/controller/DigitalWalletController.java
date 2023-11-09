@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/v1/bootcamp/ms/digitalwallet")
 @Slf4j
-@Api(value = "Billetera Digital Controller", description = "Operaciones CRUD para billetera digital")
+@Api(value = "Billetera Digital Controller")
 public class DigitalWalletController {
 
     @Autowired
